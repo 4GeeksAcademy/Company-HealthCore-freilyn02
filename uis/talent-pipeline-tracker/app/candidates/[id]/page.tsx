@@ -115,37 +115,39 @@ export default function CandidateDetailPage() {
   }
 
   if (loading) {
-    return <p className="p-6">Loading candidate...</p>;
+    return <p className="text-[#5f5a54]">Loading candidate...</p>;
   }
 
   if (error) {
-    return <p className="p-6 text-red-600">Error: {error}</p>;
+    return <p className="font-semibold text-[#b3261e]">Error: {error}</p>;
   }
 
   if (!candidate) {
-    return <p className="p-6">Candidate not found.</p>;
+    return <p className="text-[#5f5a54]">Candidate not found.</p>;
   }
 
   return (
-    <main className="p-6 max-w-2xl">
-      <button onClick={() => router.push("/")} className="text-blue-600 hover:underline mb-4">
-        Back to list
-      </button>
-      <button onClick={() => router.push(`/candidates/${candidate.id}/edit`)} className="text-blue-600 hover:underline mb-4 ml-4">
-        Edit data
-      </button>
+    <div className="max-w-2xl">
+      <div className="mb-4 flex gap-4">
+        <button onClick={() => router.push("/")} className="font-semibold text-[#ff6a3d] hover:underline">
+          Back to list
+        </button>
+        <button onClick={() => router.push(`/candidates/${candidate.id}/edit`)} className="font-semibold text-[#ff6a3d] hover:underline">
+          Edit data
+        </button>
+      </div>
 
-      <h1 className="text-2xl font-bold mb-1">{candidate.full_name}</h1>
-      <p className="text-gray-600 mb-6">{candidate.position}</p>
+      <h1 className="mb-1 font-[family-name:var(--font-space-grotesk)] text-2xl tracking-[-0.03em]">{candidate.full_name}</h1>
+      <p className="mb-6 text-[#5f5a54]">{candidate.position}</p>
 
-      <div className="flex gap-4 mb-6">
+      <div className="mb-6 flex gap-4">
         <div>
-          <label className="block text-sm text-gray-500 mb-1">Status</label>
+          <label className="mb-1 block text-sm text-[#5f5a54]">Status</label>
           <select
             value={candidate.status}
             disabled={saving}
             onChange={(e) => handlePatch({ status: e.target.value as CandidateStatus })}
-            className="border rounded px-3 py-2"
+            className="rounded-xl border border-[rgba(16,16,16,0.14)] bg-white px-4 py-2 outline-none transition focus:border-[#ff6a3d] focus:ring-2 focus:ring-[#ff6a3d]/20"
           >
             {STATUS_OPTIONS.map(([value, label]) => (
               <option key={value} value={value}>{label}</option>
@@ -154,12 +156,12 @@ export default function CandidateDetailPage() {
         </div>
 
         <div>
-          <label className="block text-sm text-gray-500 mb-1">Stage</label>
+          <label className="mb-1 block text-sm text-[#5f5a54]">Stage</label>
           <select
             value={candidate.stage}
             disabled={saving}
             onChange={(e) => handlePatch({ stage: e.target.value as CandidateStage })}
-            className="border rounded px-3 py-2"
+            className="rounded-xl border border-[rgba(16,16,16,0.14)] bg-white px-4 py-2 outline-none transition focus:border-[#ff6a3d] focus:ring-2 focus:ring-[#ff6a3d]/20"
           >
             {STAGE_OPTIONS.map(([value, label]) => (
               <option key={value} value={value}>{label}</option>
@@ -168,72 +170,72 @@ export default function CandidateDetailPage() {
         </div>
       </div>
 
-      {saving && <p className="text-sm text-gray-500 mb-4">Saving...</p>}
-      {saveError && <p className="text-sm text-red-600 mb-4">Error: {saveError}</p>}
+      {saving && <p className="mb-4 text-sm text-[#5f5a54]">Saving...</p>}
+      {saveError && <p className="mb-4 text-sm font-semibold text-[#b3261e]">Error: {saveError}</p>}
 
-      <dl className="grid grid-cols-2 gap-y-2 mb-8">
-        <dt className="text-gray-500">Email</dt>
+      <dl className="mb-8 grid grid-cols-2 gap-y-3 rounded-[28px] border border-[rgba(16,16,16,0.06)] bg-white p-6 shadow-[0_14px_30px_rgba(16,16,16,0.05)]">
+        <dt className="text-[#5f5a54]">Email</dt>
         <dd>{candidate.email}</dd>
 
-        <dt className="text-gray-500">Phone</dt>
+        <dt className="text-[#5f5a54]">Phone</dt>
         <dd>{candidate.phone}</dd>
 
-        <dt className="text-gray-500">LinkedIn</dt>
+        <dt className="text-[#5f5a54]">LinkedIn</dt>
         <dd>
-          {candidate.linkedin_url === null ? "No LinkedIn provided" : <a href={candidate.linkedin_url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">View profile</a>}
+          {candidate.linkedin_url === null ? "No LinkedIn provided" : <a href={candidate.linkedin_url} target="_blank" rel="noopener noreferrer" className="font-semibold text-[#ff6a3d] hover:underline">View profile</a>}
         </dd>
 
-        <dt className="text-gray-500">CV</dt>
+        <dt className="text-[#5f5a54]">CV</dt>
         <dd>
-          <a href={candidate.cv_url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">View CV</a>
+          <a href={candidate.cv_url} target="_blank" rel="noopener noreferrer" className="font-semibold text-[#ff6a3d] hover:underline">View CV</a>
         </dd>
 
-        <dt className="text-gray-500">Years of experience</dt>
+        <dt className="text-[#5f5a54]">Years of experience</dt>
         <dd>{candidate.experience_years}</dd>
 
-        <dt className="text-gray-500">Applied on</dt>
+        <dt className="text-[#5f5a54]">Applied on</dt>
         <dd>{new Date(candidate.applied_at).toLocaleDateString()}</dd>
       </dl>
 
       <section>
-        <h2 className="text-lg font-semibold mb-3">Internal notes</h2>
+        <h2 className="mb-3 font-[family-name:var(--font-space-grotesk)] text-lg">Internal notes</h2>
 
-        <div className="flex gap-2 mb-4">
+        <div className="mb-4 flex gap-2">
           <textarea
             value={newNoteContent}
             onChange={(e) => setNewNoteContent(e.target.value)}
             placeholder="Add a note after a call or interview..."
             disabled={notesSaving}
-            className="border rounded px-3 py-2 flex-1"
+            className="flex-1 rounded-xl border border-[rgba(16,16,16,0.14)] bg-white px-4 py-2 outline-none transition focus:border-[#ff6a3d] focus:ring-2 focus:ring-[#ff6a3d]/20"
             rows={2}
           />
           <button
             onClick={handleAddNote}
             disabled={notesSaving || !newNoteContent.trim()}
-            className="border rounded px-4 py-2 bg-blue-600 text-white disabled:opacity-50 self-start"
+            className="self-start rounded-full bg-[#ff6a3d] px-5 py-2 font-extrabold text-white transition hover:-translate-y-0.5 hover:bg-[#e4542c] disabled:opacity-50"
           >
             Add
           </button>
         </div>
 
-        {notesError && <p className="text-sm text-red-600 mb-4">Error: {notesError}</p>}
+        {notesError && <p className="mb-4 text-sm font-semibold text-[#b3261e]">Error: {notesError}</p>}
 
         {notes.length === 0 ? (
-          <p className="text-gray-500">No notes yet.</p>
+          <p className="text-[#5f5a54]">No notes yet.</p>
         ) : (
           <ul className="space-y-3">
             {notes.map((note) => (
-              <li key={note.id} className="border rounded p-3 flex justify-between items-start gap-3">
+              <li key={note.id} className="flex items-start justify-between gap-3 rounded-[20px] border border-[rgba(16,16,16,0.06)] bg-white p-4">
                 <div>
                   <p>{note.content}</p>
-                  <p className="text-xs text-gray-400 mt-1">
+                  <p className="mt-1 text-xs text-[#5f5a54]">
                     {new Date(note.created_at).toLocaleString()}
                   </p>
                 </div>
                 <button
                   onClick={() => handleDeleteNote(note.id)}
                   disabled={notesSaving}
-                  className="text-red-600 text-sm hover:underline shrink-0"
+                  className="shrink-0 text-sm font-semibold text-[#b3261e] hover:underline"
                 >
                   Delete
                 </button>
@@ -242,6 +244,6 @@ export default function CandidateDetailPage() {
           </ul>
         )}
       </section>
-    </main>
+    </div>
   );
 }

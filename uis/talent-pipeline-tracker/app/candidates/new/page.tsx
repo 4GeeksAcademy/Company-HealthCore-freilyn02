@@ -5,8 +5,6 @@ import { useRouter } from "next/navigation";
 import { createCandidate } from "@/services/candidates";
 import { ApiError } from "@/services/api";
 
-// Empty starting values for the form. Kept as a separate constant so
-// resetting the form (if we ever need to) is a one-line operation.
 const EMPTY_FORM = {
   full_name: "",
   email: "",
@@ -28,8 +26,6 @@ export default function NewCandidatePage() {
     setForm((prev) => ({ ...prev, [field]: value }));
   }
 
-  // Basic required-field validation, as asked in the assignment
-  // ("Both forms must validate required fields before submission").
   function validate(): string | null {
     if (!form.full_name.trim()) return "Full name is required.";
     if (!form.email.trim()) return "Email is required.";
@@ -61,7 +57,6 @@ export default function NewCandidatePage() {
         cv_url: form.cv_url.trim() || null,
         experience_years: Number(form.experience_years),
       });
-      // On success, go straight to the new candidate's detail page.
       router.push(`/candidates/${created.id}`);
     } catch (err) {
       const message =
@@ -75,94 +70,94 @@ export default function NewCandidatePage() {
   }
 
   return (
-    <main className="p-6 max-w-lg">
-      <button onClick={() => router.push("/")} className="text-blue-600 hover:underline mb-4">
+    <div className="max-w-lg">
+      <button onClick={() => router.push("/")} className="mb-4 font-semibold text-[#ff6a3d] hover:underline">
         Back to list
       </button>
 
-      <h1 className="text-2xl font-bold mb-6">Register a referral candidate</h1>
+      <h1 className="mb-6 font-[family-name:var(--font-space-grotesk)] text-2xl tracking-[-0.03em]">Register a referral candidate</h1>
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4 rounded-[28px] border border-[rgba(16,16,16,0.06)] bg-white p-6 shadow-[0_14px_30px_rgba(16,16,16,0.05)]">
         <div>
-          <label className="block text-sm text-gray-500 mb-1">Full name *</label>
+          <label className="mb-1 block text-sm text-[#5f5a54]">Full name *</label>
           <input
             type="text"
             value={form.full_name}
             onChange={(e) => updateField("full_name", e.target.value)}
-            className="border rounded px-3 py-2 w-full"
+            className="w-full rounded-xl border border-[rgba(16,16,16,0.14)] px-4 py-2 outline-none transition focus:border-[#ff6a3d] focus:ring-2 focus:ring-[#ff6a3d]/20"
           />
         </div>
 
         <div>
-          <label className="block text-sm text-gray-500 mb-1">Email *</label>
+          <label className="mb-1 block text-sm text-[#5f5a54]">Email *</label>
           <input
             type="email"
             value={form.email}
             onChange={(e) => updateField("email", e.target.value)}
-            className="border rounded px-3 py-2 w-full"
+            className="w-full rounded-xl border border-[rgba(16,16,16,0.14)] px-4 py-2 outline-none transition focus:border-[#ff6a3d] focus:ring-2 focus:ring-[#ff6a3d]/20"
           />
         </div>
 
         <div>
-          <label className="block text-sm text-gray-500 mb-1">Phone *</label>
+          <label className="mb-1 block text-sm text-[#5f5a54]">Phone *</label>
           <input
             type="text"
             value={form.phone}
             onChange={(e) => updateField("phone", e.target.value)}
-            className="border rounded px-3 py-2 w-full"
+            className="w-full rounded-xl border border-[rgba(16,16,16,0.14)] px-4 py-2 outline-none transition focus:border-[#ff6a3d] focus:ring-2 focus:ring-[#ff6a3d]/20"
           />
         </div>
 
         <div>
-          <label className="block text-sm text-gray-500 mb-1">Position *</label>
+          <label className="mb-1 block text-sm text-[#5f5a54]">Position *</label>
           <input
             type="text"
             value={form.position}
             onChange={(e) => updateField("position", e.target.value)}
-            className="border rounded px-3 py-2 w-full"
+            className="w-full rounded-xl border border-[rgba(16,16,16,0.14)] px-4 py-2 outline-none transition focus:border-[#ff6a3d] focus:ring-2 focus:ring-[#ff6a3d]/20"
           />
         </div>
 
         <div>
-          <label className="block text-sm text-gray-500 mb-1">LinkedIn URL (optional)</label>
+          <label className="mb-1 block text-sm text-[#5f5a54]">LinkedIn URL (optional)</label>
           <input
             type="text"
             value={form.linkedin_url}
             onChange={(e) => updateField("linkedin_url", e.target.value)}
-            className="border rounded px-3 py-2 w-full"
+            className="w-full rounded-xl border border-[rgba(16,16,16,0.14)] px-4 py-2 outline-none transition focus:border-[#ff6a3d] focus:ring-2 focus:ring-[#ff6a3d]/20"
           />
         </div>
 
         <div>
-          <label className="block text-sm text-gray-500 mb-1">CV URL (optional)</label>
+          <label className="mb-1 block text-sm text-[#5f5a54]">CV URL (optional)</label>
           <input
             type="text"
             value={form.cv_url}
             onChange={(e) => updateField("cv_url", e.target.value)}
-            className="border rounded px-3 py-2 w-full"
+            className="w-full rounded-xl border border-[rgba(16,16,16,0.14)] px-4 py-2 outline-none transition focus:border-[#ff6a3d] focus:ring-2 focus:ring-[#ff6a3d]/20"
           />
         </div>
 
         <div>
-          <label className="block text-sm text-gray-500 mb-1">Years of experience *</label>
+          <label className="mb-1 block text-sm text-[#5f5a54]">Years of experience *</label>
           <input
             type="number"
             value={form.experience_years}
             onChange={(e) => updateField("experience_years", e.target.value)}
-            className="border rounded px-3 py-2 w-full"
+            className="w-full rounded-xl border border-[rgba(16,16,16,0.14)] px-4 py-2 outline-none transition focus:border-[#ff6a3d] focus:ring-2 focus:ring-[#ff6a3d]/20"
           />
         </div>
 
-        {submitError && <p className="text-sm text-red-600">Error: {submitError}</p>}
+        {submitError && <p className="text-sm font-semibold text-[#b3261e]">Error: {submitError}</p>}
 
         <button
           type="submit"
           disabled={submitting}
-          className="border rounded px-4 py-2 bg-blue-600 text-white disabled:opacity-50"
+          className="rounded-full bg-[#ff6a3d] px-5 py-3 font-extrabold text-white transition hover:-translate-y-0.5 hover:bg-[#e4542c] disabled:opacity-50"
         >
           {submitting ? "Registering..." : "Register candidate"}
         </button>
       </form>
-    </main>
+    </div>
   );
 }

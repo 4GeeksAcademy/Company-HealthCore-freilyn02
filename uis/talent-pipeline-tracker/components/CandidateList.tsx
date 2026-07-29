@@ -57,37 +57,38 @@ export default function CandidateList() {
   }, [status, stage, search]);
 
   return (
-    <main className="p-6">
-      <div className="flex items-center justify-between mb-6">
+    <div>
+      <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold mb-1">
+          <p className="mb-2 inline-block text-[0.78rem] font-extrabold uppercase tracking-[0.14em] text-[#ff6a3d]">
+            People &amp; Talent
+          </p>
+          <h1 className="font-[family-name:var(--font-space-grotesk)] text-2xl tracking-[-0.03em]">
             Executive Assistant — Austin headquarters
           </h1>
-          <p className="text-gray-600">
-            Candidate pipeline for the active search
-          </p>
+          <p className="mt-1 text-[#5f5a54]">Candidate pipeline for the active search</p>
         </div>
         <Link
           href="/candidates/new"
-          className="border rounded px-4 py-2 bg-blue-600 text-white hover:bg-blue-700"
+          className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-[#ff6a3d] px-5 py-2 font-extrabold text-white transition hover:-translate-y-0.5 hover:bg-[#e4542c]"
         >
           + Register referral
         </Link>
       </div>
 
-      <div className="flex gap-4 mb-6">
+      <div className="mb-6 flex flex-wrap gap-4">
         <input
           type="text"
           placeholder="Search by name or email..."
           defaultValue={search}
           onChange={(e) => updateFilter("search", e.target.value)}
-          className="border rounded px-3 py-2 flex-1"
+          className="flex-1 rounded-xl border border-[rgba(16,16,16,0.14)] bg-white px-4 py-3 outline-none transition focus:border-[#ff6a3d] focus:ring-2 focus:ring-[#ff6a3d]/20"
         />
 
         <select
           value={status}
           onChange={(e) => updateFilter("status", e.target.value)}
-          className="border rounded px-3 py-2"
+          className="rounded-xl border border-[rgba(16,16,16,0.14)] bg-white px-4 py-3 outline-none transition focus:border-[#ff6a3d] focus:ring-2 focus:ring-[#ff6a3d]/20"
         >
           <option value="">All statuses</option>
           {STATUS_OPTIONS.map(([value, label]) => (
@@ -100,7 +101,7 @@ export default function CandidateList() {
         <select
           value={stage}
           onChange={(e) => updateFilter("stage", e.target.value)}
-          className="border rounded px-3 py-2"
+          className="rounded-xl border border-[rgba(16,16,16,0.14)] bg-white px-4 py-3 outline-none transition focus:border-[#ff6a3d] focus:ring-2 focus:ring-[#ff6a3d]/20"
         >
           <option value="">All stages</option>
           {STAGE_OPTIONS.map(([value, label]) => (
@@ -111,43 +112,45 @@ export default function CandidateList() {
         </select>
       </div>
 
-      {loading && <p>Loading candidates...</p>}
-      {error && <p className="text-red-600">Error: {error}</p>}
+      {loading && <p className="text-[#5f5a54]">Loading candidates...</p>}
+      {error && <p className="font-semibold text-[#b3261e]">Error: {error}</p>}
 
       {!loading && !error && (
-        <table className="w-full border-collapse">
-          <thead>
-            <tr className="text-left border-b">
-              <th className="p-2">Name</th>
-              <th className="p-2">Position</th>
-              <th className="p-2">Status</th>
-              <th className="p-2">Stage</th>
-            </tr>
-          </thead>
-          <tbody>
-            {candidates.map((candidate) => (
-              <tr
-                key={candidate.id}
-                className="border-b hover:bg-gray-50 cursor-pointer"
-                onClick={() => router.push(`/candidates/${candidate.id}`)}
-              >
-                <td className="p-2">
-                  <Link href={`/candidates/${candidate.id}`} className="text-blue-600 hover:underline">
-                    {candidate.full_name}
-                  </Link>
-                </td>
-                <td className="p-2">{candidate.position}</td>
-                <td className="p-2">{STATUS_LABELS[candidate.status]}</td>
-                <td className="p-2">{STAGE_LABELS[candidate.stage]}</td>
+        <div className="overflow-hidden rounded-[28px] border border-[rgba(16,16,16,0.06)] bg-white shadow-[0_14px_30px_rgba(16,16,16,0.05)]">
+          <table className="w-full border-collapse">
+            <thead>
+              <tr className="border-b border-[rgba(16,16,16,0.08)] text-left">
+                <th className="p-4 text-[0.78rem] font-extrabold uppercase tracking-[0.1em] text-[#5f5a54]">Name</th>
+                <th className="p-4 text-[0.78rem] font-extrabold uppercase tracking-[0.1em] text-[#5f5a54]">Position</th>
+                <th className="p-4 text-[0.78rem] font-extrabold uppercase tracking-[0.1em] text-[#5f5a54]">Status</th>
+                <th className="p-4 text-[0.78rem] font-extrabold uppercase tracking-[0.1em] text-[#5f5a54]">Stage</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {candidates.map((candidate) => (
+                <tr
+                  key={candidate.id}
+                  className="cursor-pointer border-b border-[rgba(16,16,16,0.06)] transition hover:bg-[#fff8ef]"
+                  onClick={() => router.push(`/candidates/${candidate.id}`)}
+                >
+                  <td className="p-4">
+                    <Link href={`/candidates/${candidate.id}`} className="font-semibold text-[#ff6a3d] hover:underline">
+                      {candidate.full_name}
+                    </Link>
+                  </td>
+                  <td className="p-4">{candidate.position}</td>
+                  <td className="p-4">{STATUS_LABELS[candidate.status]}</td>
+                  <td className="p-4">{STAGE_LABELS[candidate.stage]}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
 
       {!loading && !error && candidates.length === 0 && (
-        <p className="text-gray-500 mt-4">No candidates match these filters.</p>
+        <p className="mt-4 text-[#5f5a54]">No candidates match these filters.</p>
       )}
-    </main>
+    </div>
   );
 }
