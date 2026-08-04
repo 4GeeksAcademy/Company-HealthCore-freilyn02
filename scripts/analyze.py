@@ -1,7 +1,8 @@
 import argparse
 import csv
 import sys
-from collections import Counter
+
+from incident_core import parse_csv_rows, separate_valid_invalid, compute_metrics
 
 
 def parse_arguments():
@@ -21,146 +22,24 @@ def parse_arguments():
 
 
 def load_incidents(csv_path):
-    """Load incident records from a CSV file.
+    """Open the CSV file from disk and parse it into a list of dicts.
 
-    Returns a list of dicts, one per row, with the original string values.
     Exits the program with a clear error message if the file cannot be read.
     """
     try:
         with open(csv_path, newline="", encoding="utf-8") as csv_file:
-            reader = csv.DictReader(csv_file)
-            rows = list(reader)
+            rows = parse_csv_rows(csv_file)
     except FileNotFoundError:
         print(f"Error: file not found: {csv_path}", file=sys.stderr)
         sys.exit(1)
     except OSError as error:
         print(f"Error: could not read file '{csv_path}': {error}", file=sys.stderr)
         sys.exit(1)
-
-    if not rows:
-        print(f"Error: '{csv_path}' contains no data rows.", file=sys.stderr)
+    except ValueError as error:
+        print(f"Error: {error}", file=sys.stderr)
         sys.exit(1)
 
     return rows
-
-
-VALID_CATEGORIES = {
-    "billing",
-    "appointment_scheduling",
-    "clinical_communication",
-    "records_access",
-    "facility",
-    "other",
-}
-
-VALID_STATUSES = {"open", "closed", "discarded"}
-
-REQUIRED_FIELDS = ["incident_id", "clinic", "category", "status", "description", "reported_at"]
-
-MIN_DESCRIPTION_LENGTH = 10
-
-
-def validate_incident(row):
-    """Validate a single incident record against the HealthCore context rules.
-
-    Returns a tuple (is_valid, reason). If valid, reason is None.
-    Only the FIRST violation found is reported, checked in a fixed order.
-    """
-    # Rule 1: required fields must not be missing or empty
-    for field in REQUIRED_FIELDS:
-        if not row.get(field, "").strip():
-            return False, "missing_field"
-
-    # Rule 2: category must be one of the allowed values
-    if row["category"] not in VALID_CATEGORIES:
-        return False, "invalid_category"
-
-    # Rule 3: status must be one of the allowed values
-    if row["status"] not in VALID_STATUSES:
-        return False, "invalid_status"
-
-    # Rule 4: description must meet the minimum length
-    if len(row["description"].strip()) < MIN_DESCRIPTION_LENGTH:
-        return False, "description_too_short"
-
-    # Rule 5: satisfaction_score rules depend on status
-    score_raw = row.get("satisfaction_score", "").strip()
-
-    if row["status"] == "closed":
-        if not score_raw:
-            return False, "closed_missing_score"
-        if not _is_valid_score(score_raw):
-            return False, "score_out_of_range"
-    elif score_raw and not _is_valid_score(score_raw):
-        # score is optional for open/discarded, but if present, must be valid
-        return False, "score_out_of_range"
-
-    return True, None
-
-
-def _is_valid_score(score_raw):
-    """Check whether a raw string score is an integer between 1 and 5."""
-    try:
-        score = int(score_raw)
-    except ValueError:
-        return False
-    return 1 <= score <= 5
-
-
-def separate_valid_invalid(rows):
-    """Apply validate_incident to every row and split them into two groups.
-
-    Returns a tuple (valid_rows, invalid_reason_counts) where:
-    - valid_rows is a list of the dicts that passed validation
-    - invalid_reason_counts is a Counter mapping reason -> how many rows failed for it
-    """
-    valid_rows = []
-    invalid_reason_counts = Counter()
-
-    for row in rows:
-        is_valid, reason = validate_incident(row)
-        if is_valid:
-            valid_rows.append(row)
-        else:
-            invalid_reason_counts[reason] += 1
-
-    return valid_rows, invalid_reason_counts
-
-
-def compute_metrics(valid_rows):
-    """Compute all reportable metrics from the list of valid incident rows.
-
-    Returns a dict with:
-    - category_counts: Counter of category -> count
-    - status_counts: Counter of status -> count
-    - scored_closed_count: how many closed incidents have a valid score
-    - average_satisfaction: average of those scores (float), or None if none exist
-    - score_distribution: Counter of score value -> how many times it appears
-    """
-    category_counts = Counter(row["category"] for row in valid_rows)
-    status_counts = Counter(row["status"] for row in valid_rows)
-
-    closed_scores = []
-    for row in valid_rows:
-        if row["status"] == "closed":
-            score_raw = row.get("satisfaction_score", "").strip()
-            if score_raw:
-                closed_scores.append(int(score_raw))
-
-    if closed_scores:
-        average_satisfaction = sum(closed_scores) / len(closed_scores)
-    else:
-        average_satisfaction = None
-
-    score_distribution = Counter(closed_scores)
-
-    return {
-        "category_counts": category_counts,
-        "status_counts": status_counts,
-        "scored_closed_count": len(closed_scores),
-        "average_satisfaction": average_satisfaction,
-        "score_distribution": score_distribution,
-    }
 
 
 def print_report(csv_path, total_records, valid_rows, invalid_reason_counts, metrics):
