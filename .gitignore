@@ -1,3 +1,4 @@
 .notes/
 results.csv
 __pycache__/
+services/api/venv/
