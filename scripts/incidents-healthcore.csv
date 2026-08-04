@@ -1,0 +1,101 @@
+incident_id,clinic,category,status,description,satisfaction_score,reported_at
+1,Bristol,clinical_communication,open,N/A,,2026-06-08
+2,Tampa,records_access,discarded,Clinic phone line was unreachable for several days straight.,,2026-04-09
+3,Miami,clinical_communication,open,Patient portal login credentials stopped working suddenly.,,2026-02-12
+4,Leeds,other,open,Prescription refill request was delayed by over two weeks.,,2026-06-22
+5,Birmingham,other,open,Referral letter never reached the specialist at Tampa clinic.,,2026-02-18
+6,Jacksonville,other,pending,Front desk gave incorrect information about insurance coverage.,,2026-04-09
+7,Birmingham,billing,open,Clinic phone line was unreachable for several days straight.,,2026-03-27
+8,Bristol,records_access,closed,Appointment reminder was sent for the wrong clinic location.,5,2026-07-11
+9,St. Petersburg,scheduling,closed,Invoice included a service that was never actually provided.,4,2026-03-07
+10,Leeds,other,discarded,Front desk gave incorrect information about insurance coverage.,,2026-02-08
+11,Leeds,records_access,closed,Invoice included a service that was never actually provided.,-1,2026-06-19
+12,Orlando,records_access,closed,Wrong dosage instructions were printed on discharge papers.,,2026-02-17
+13,Bristol,,discarded,Referral letter never reached the specialist at Tampa clinic.,,2026-07-04
+14,,records_access,discarded,Records from Bristol clinic were missing during Tampa visit.,,2026-01-13
+15,Sheffield,billing,discarded,Parking validation was not honored at the front desk.,,2026-03-18
+16,Tampa,clinical_communication,Closed,Follow-up call was never received after the procedure.,,2026-06-18
+17,Leeds,records_access,open,Parking validation was not honored at the front desk.,,2026-04-06
+18,St. Petersburg,appointment_scheduling,discarded,Appointment was cancelled without any prior notification sent.,,2026-03-17
+19,Tampa,clinical_communication,discarded,Front desk gave incorrect information about insurance coverage.,,2026-07-21
+20,Fort Lauderdale,clinical_communication,Closed,Front desk gave incorrect information about insurance coverage.,,2026-02-05
+21,Fort Lauderdale,billing,open,Bad.,,2026-03-16
+22,Leeds,appointment_scheduling,discarded,Appointment reminder was sent for the wrong clinic location.,,2026-02-02
+23,Tampa,billing,discarded,Wrong dosage instructions were printed on discharge papers.,,2026-06-16
+24,Manchester,records_access,discarded,Referral letter never reached the specialist at Tampa clinic.,,2026-02-22
+25,Leeds,scheduling,closed,Patient could not access lab results through the portal.,,2026-05-28
+26,St. Petersburg,other,discarded,Follow-up call was never received after the procedure.,,2026-03-13
+27,Jacksonville,billing,open,Patient could not access lab results through the portal.,,2026-05-15
+28,Tampa,facility,closed,Patient could not access lab results through the portal.,,2026-03-01
+29,Fort Lauderdale,billing,discarded,Patient portal login credentials stopped working suddenly.,,2026-02-01
+30,Bristol,billing,closed,Appointment reminder was sent for the wrong clinic location.,3,2026-02-03
+31,Birmingham,facility,open,Parking validation was not honored at the front desk.,,2026-04-07
+32,Fort Lauderdale,appointment_scheduling,closed,Wrong dosage instructions were printed on discharge papers.,1,2026-05-16
+33,Tampa,clinical_communication,closed,Invoice included a service that was never actually provided.,1,2026-06-14
+34,Birmingham,billing,closed,Invoice included a service that was never actually provided.,-1,2026-06-21
+35,Tampa,appointment_scheduling,discarded,Records from Bristol clinic were missing during Tampa visit.,,2026-02-07
+36,Manchester,clinical_communication,closed,Patient could not access lab results through the portal.,,2026-04-06
+37,Jacksonville,facility,open,Patient was billed twice for the same consultation visit.,,2026-07-28
+38,Birmingham,billing,open,N/A,,2026-05-27
+39,Manchester,records_access,open,Clinic phone line was unreachable for several days straight.,,2026-04-16
+40,Liverpool,records_access,open,Invoice included a service that was never actually provided.,,2026-01-06
+41,Leeds,records_access,closed,Invoice included a service that was never actually provided.,5,2026-07-26
+42,Birmingham,appointment_scheduling,open,Waiting room air conditioning was not working during visit.,,2026-06-16
+43,Orlando,other,discarded,Patient was billed twice for the same consultation visit.,,2026-01-19
+44,St. Petersburg,billing,closed,Records from Bristol clinic were missing during Tampa visit.,6,2026-03-02
+45,,appointment_scheduling,open,Prescription refill request was delayed by over two weeks.,,2026-05-03
+46,Tampa,appointment_scheduling,pending,Appointment reminder was sent for the wrong clinic location.,,2026-06-28
+47,Fort Lauderdale,facility,open,,,2026-05-02
+48,Fort Lauderdale,clinical_communication,open,Patient portal login credentials stopped working suddenly.,,2026-05-11
+49,,clinical_communication,closed,Referral letter never reached the specialist at Tampa clinic.,3,2026-03-08
+50,Jacksonville,billing,open,Records from Bristol clinic were missing during Tampa visit.,,2026-03-25
+51,Fort Lauderdale,billing,discarded,Patient could not access lab results through the portal.,,2026-05-04
+52,Sheffield,clinical_communication,open,Appointment was cancelled without any prior notification sent.,,2026-03-05
+53,Orlando,appointment_scheduling,closed,Clinic phone line was unreachable for several days straight.,3,2026-03-10
+54,Fort Lauderdale,facility,open,Patient portal login credentials stopped working suddenly.,,2026-07-21
+55,Sheffield,billing,open,Billing issue.,,2026-03-22
+56,Tampa,appointment_scheduling,closed,Waiting room air conditioning was not working during visit.,3,2026-06-18
+57,Orlando,clinical_communication,discarded,Records from Bristol clinic were missing during Tampa visit.,,2026-06-21
+58,Leeds,billing,discarded,Invoice included a service that was never actually provided.,,2026-07-02
+59,Leeds,clinical_communication,closed,Patient portal login credentials stopped working suddenly.,-1,2026-01-01
+60,Manchester,facility,discarded,Invoice included a service that was never actually provided.,,2026-06-15
+61,Sheffield,billing,discarded,Appointment was cancelled without any prior notification sent.,,2026-01-04
+62,Manchester,clinical_communication,discarded,Front desk gave incorrect information about insurance coverage.,,2026-05-02
+63,Manchester,billing,closed,Follow-up call was never received after the procedure.,1,2026-04-05
+64,Miami,appointment_scheduling,discarded,Appointment reminder was sent for the wrong clinic location.,,2026-02-22
+65,Miami,records_access,discarded,Parking validation was not honored at the front desk.,,2026-07-18
+66,Manchester,appointment_scheduling,open,Appointment was cancelled without any prior notification sent.,,2026-02-28
+67,Liverpool,other,closed,Wrong dosage instructions were printed on discharge papers.,,2026-01-06
+68,Birmingham,appointment_scheduling,closed,Referral letter never reached the specialist at Tampa clinic.,1,2026-07-24
+69,,records_access,open,Patient could not access lab results through the portal.,,2026-07-02
+70,Jacksonville,appointment_scheduling,open,Patient was billed twice for the same consultation visit.,,2026-03-10
+71,Birmingham,clinical_communication,closed,Clinic phone line was unreachable for several days straight.,,2026-02-13
+72,Miami,records_access,discarded,Clinic phone line was unreachable for several days straight.,,2026-06-17
+73,Sheffield,billing,closed,Referral letter never reached the specialist at Tampa clinic.,3,2026-03-01
+74,Bristol,records_access,closed,Parking validation was not honored at the front desk.,4,2026-01-20
+75,Fort Lauderdale,records_access,discarded,Patient could not access lab results through the portal.,,2026-05-04
+76,Leeds,scheduling,open,Front desk gave incorrect information about insurance coverage.,,2026-01-23
+77,Miami,other,closed,Prescription refill request was delayed by over two weeks.,1,2026-04-03
+78,St. Petersburg,unknown,discarded,Invoice included a service that was never actually provided.,,2026-03-17
+79,Liverpool,facility,open,Patient could not access lab results through the portal.,,2026-06-10
+80,Liverpool,other,discarded,Appointment was cancelled without any prior notification sent.,,2026-06-13
+81,Manchester,clinical_communication,closed,Front desk gave incorrect information about insurance coverage.,3,2026-05-19
+82,Leeds,facility,discarded,Patient portal login credentials stopped working suddenly.,,2026-02-14
+83,Miami,records_access,discarded,Patient could not access lab results through the portal.,,2026-04-15
+84,Sheffield,other,open,Patient portal login credentials stopped working suddenly.,,2026-04-26
+85,Tampa,other,discarded,Prescription refill request was delayed by over two weeks.,,2026-03-17
+86,Miami,appointment_scheduling,discarded,Waiting room air conditioning was not working during visit.,,2026-01-27
+87,Orlando,appointment_scheduling,closed,Patient was billed twice for the same consultation visit.,,2026-07-07
+88,Orlando,billing,closed,Invoice included a service that was never actually provided.,5,2026-04-20
+89,Orlando,records_access,closed,Invoice included a service that was never actually provided.,1,2026-06-23
+90,,appointment_scheduling,open,Wrong dosage instructions were printed on discharge papers.,,2026-07-14
+91,St. Petersburg,billing,discarded,Patient could not access lab results through the portal.,,2026-05-15
+92,Tampa,records_access,discarded,Front desk gave incorrect information about insurance coverage.,,2026-04-05
+93,Sheffield,records_access,discarded,Clinic phone line was unreachable for several days straight.,,2026-05-11
+94,,facility,closed,Appointment was cancelled without any prior notification sent.,4,2026-05-14
+95,Jacksonville,appointment_scheduling,discarded,Waiting room air conditioning was not working during visit.,,2026-03-25
+96,Sheffield,appointment_scheduling,closed,Records from Bristol clinic were missing during Tampa visit.,3,2026-04-21
+97,Orlando,clinical_communication,discarded,Appointment reminder was sent for the wrong clinic location.,,2026-03-11
+98,Manchester,records_access,discarded,Referral letter never reached the specialist at Tampa clinic.,,2026-02-08
+99,St. Petersburg,records_access,closed,Follow-up call was never received after the procedure.,,2026-02-03
+100,Bristol,records_access,closed,Appointment was cancelled without any prior notification sent.,1,2026-02-27
