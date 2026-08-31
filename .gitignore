@@ -1,0 +1,16 @@
+# Python (services/api)
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+services/api/data/
+
+# Environment variables
+.env
+.env.local
+*.env
+!.env.example
+
+node_modules/
+dist/
+.vite/
